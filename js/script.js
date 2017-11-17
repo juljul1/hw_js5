@@ -1,17 +1,16 @@
 //1
-let div = document.querySelector('.coordin');
-
+const div = document.querySelector('.coordin');
+let rez = document.getElementById('coordsrez');
 //Reed coorditates
+
 let coordinateReader = function(e) {
-  let rez = document.getElementById('coordsrez');
   rez.innerHTML = "Coordinates X : " + e.clientX + 
   ' , Coordinates Y: ' + e.clientY;
 }
 
 //Clear coordinates on mouseout
-let coordinateCleaner = function(e) {
-  let rezout = document.getElementById('coordsrez');
-  rezout.innerHTML = "Cursor is not in focus";
+let coordinateCleaner = function() {
+  rez.innerHTML = "Cursor is not in focus";
 }
 
 div.addEventListener('mousemove', coordinateReader); //Reed coorditates
@@ -19,44 +18,36 @@ div.addEventListener('mouseout', coordinateCleaner); //Clear coordinates on mous
 
 //2
 //show hidden
-showfirst.ondblclick = function(){
-  let imgShow = document.getElementById('showfirst');
-  let imgHidden = document.getElementById('hiddenimg');
-  
-  imgShow.style.display = 'none';
-  imgHidden.style.display = 'block';
+let imgShow = document.querySelector('.secondshow');
+
+function showfirst(){
+  imgShow.classList.toggle('show');
 }
-//hide shown
-hiddenimg.ondblclick = function(){
-  let imgShow = document.getElementById('showfirst');
-  let imgHidden = document.getElementById('hiddenimg');
-  
-  imgShow.style.display = 'block';
-  imgHidden.style.display = 'none';
-}
+imgShow.addEventListener('dblclick', showfirst);
 
 // 3
-  
-  let create = document.querySelector('#create');
 //crate 350 divs class createdDiv
-  create.onclick = function createdivs() {
-    let divs = document.querySelector('#resdiv');
-      for (let x = 0; x < 350; x++) {
-          let element = document.createElement('div');
-          element.classList.add('createdDiv');
-          divs.appendChild(element);
-      }
-      function crateCircle() {//func creates style borderRadius
-          this.style.borderRadius = '50%';
-      }
+create.onclick = function createdivs() {
+  
+  function crateCircle() {
+    this.classList.add('rounded-borders');
+  }
+    
+  function noRadius() {//func makes borderRadius 0
+    this.classList.remove('rounded-borders');
+  }
 
-      function noRadius() {//func makes borderRadius 0
-         this.style.borderRadius = '0%';
-      }
-      let block = document.querySelectorAll('.createdDiv');//find div
+  let divs = document.querySelector('#resdiv');
+    for (let x = 0; x < 350; x++) {
+      let element = document.createElement('div');
+      element.classList.add('createdDiv');
+      divs.appendChild(element);
+    }
+
+  let block = document.querySelectorAll('.createdDiv');//find div
       block.forEach(function(elem) { //create/remove circle
-          elem.addEventListener('mouseover', crateCircle);
-          elem.addEventListener('mouseout', noRadius);
+        elem.addEventListener('mouseover', crateCircle);
+        elem.addEventListener('mouseout', noRadius);
       });
   }
 
@@ -64,9 +55,9 @@ hiddenimg.ondblclick = function(){
   clear.onclick = function(){
     let parent = document.getElementById("resdiv");
     let child = document.querySelectorAll(".createdDiv");
-    child.forEach(function(elem) {
-         parent.removeChild(elem);
-      });
+        child.forEach(function(elem) {
+          parent.removeChild(elem);
+        });
   }
 
 //4
@@ -76,47 +67,41 @@ hiddenimg.ondblclick = function(){
     elem.onclick = function addBgImg() {
       let parentdiv = document.getElementById("big");
       parentdiv.style.backgroundImage = 'url(' + path + ')';
-      parentdiv.style.backgroundSize = 'contain';
-      }
+     }
   });
 
 //5
 let obj = document.getElementById("move");
-obj.style.top = "0";
 
 move.onclick = function(){
   var position = parseInt(obj.style.top);
 
   if (obj.style.top <= 0) {
   obj.style.top = "100px";
-  console.log(position);
-  }
-
-  else{   
+  }else{   
     obj.style.top = position + 100 + 'px' ;
   }
 }
 
 //6
-var trigger =document.querySelector('#trig');
-  trigger.style.left="0";
+var trigger = document.querySelector('#trig');
+var position = 0;
+
   trigger.onclick = function moveBlock() {
-   var position =parseInt(trigger.style.left);
-    if (position == 0) {
-      trigger.style.left = 45 +'%';
-      trigger.style.marginLeft="-25px";
-      console.log(1);
+    if (position === 0) {
+      trigger.style.marginLeft = 'auto';
+      trigger.style.marginRight= 'auto';
+      ++position;
+    } else if (position === 1) {
+      trigger.style.marginLeft= 'auto';
+      trigger.style.marginRight= '0';
+      ++position;
+    } else {
+      trigger.style.marginLeft= '0';
+      trigger.style.marginRight= 'auto';
+      position = 0;
       } 
 
-    else if (position == 45) {
-      trigger.style.left= '73%';
-      trigger.style.marginLeft="0px";
-      console.log(2);
-      } 
+    console.log(position);
 
-    else {
-      trigger.style.left= "0px";
-      trigger.style.marginLeft="0px";
-      console.log(0);
-      }
   } 

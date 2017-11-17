@@ -12,19 +12,20 @@
 	color: blue;
 	font-size: 28px;
 }
-#showfirst{
+.secondshow{
 	height: 150px;
 	width: 200px;
 	margin: 10px;
-	display: block;
+	background-image: url("https://images.techhive.com/images/article/2016/05/imagetragick_logo-100659291-primary.idge.jpg");
+	background-size: cover;
 }
-#hiddenimg{
-	display: none;
+.show{
 	height: 150px;
-	margin: 10px;
 	width: 200px;
+	margin: 10px;
+	background-image: url("https://i.ytimg.com/vi/tfsBKB0qz8s/hqdefault.jpg");
+	background-size: cover;
 }
-
 .createdDiv {
   width: 30px;
   height: 30px;
@@ -33,7 +34,9 @@
   margin: 0.5px;
   transition: all 0.3s;
 }
-
+.rounded-borders{
+	border-radius: 50%;
+}
 .circle {
   border-radius: 45%;
 }
@@ -45,7 +48,7 @@
 #big{
 	width: 100%;
 	min-height: 250px;
-	/*background-image: url(img/1.jpg);*/
+	background-size: contain;
 }
 #move{
 	width: 50px;
